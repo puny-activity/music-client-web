@@ -18,6 +18,9 @@ const props = defineProps({
   text: {
     type: String,
     required: true
+  },
+  sizeChangePercent: {
+    type: Number
   }
 })
 
@@ -38,41 +41,90 @@ const updateWidth = () => {
 </script>
 
 <template>
-  <div class = "container" ref = "containerRef">
-    <BaseInteractive class = "card" :style="[{  backgroundColor: backgroundColor }]">
-
-      <div class="image-container"  :style="[{ width: containerWidth + 'px', height: containerWidth + 'px' }]">
-        <div v-if="images.length === 1" class="image-container" >
-          <img :src="images[0]" class="card-image full-image" alt="image0">
+  <div ref="containerRef" class="container">
+    <BaseInteractive
+      :size-change-percent="sizeChangePercent"
+      :style="[{ backgroundColor: backgroundColor }]"
+      class="card"
+    >
+      <div
+        :style="[{ width: containerWidth + 'px', height: containerWidth + 'px' }]"
+        class="image-container"
+      >
+        <div v-if="images.length === 1" class="image-container">
+          <img :src="images[0]" alt="image0" class="card-image full-image" />
         </div>
-        <div v-if="images.length === 2" class="image-container" >
-          <img :src="images[0]" class="card-image left-image" alt="image0"  :style="[{  height: containerWidth + 'px' }]">
-          <img :src="images[1]" class="card-image right-image" alt="image1" :style="[{  height: containerWidth + 'px' }]">
+        <div v-if="images.length === 2" class="image-container">
+          <img
+            :src="images[0]"
+            :style="[{ height: containerWidth + 'px' }]"
+            alt="image0"
+            class="card-image left-image"
+          />
+          <img
+            :src="images[1]"
+            :style="[{ height: containerWidth + 'px' }]"
+            alt="image1"
+            class="card-image right-image"
+          />
         </div>
-        <div v-if="images.length === 3" class="image-container" >
-          <img :src="images[0]" class="card-image left-image" alt="image0"  :style="[{  height: containerWidth + 'px' }]">
-          <img :src="images[1]" class="card-image right-top-image" alt="image1" :style="[{  height: 0.49*containerWidth + 'px' }]">
-          <img :src="images[2]" class="card-image right-bottom-image" alt="image2" :style="[{  height: 0.49*containerWidth + 'px' }]">
+        <div v-if="images.length === 3" class="image-container">
+          <img
+            :src="images[0]"
+            :style="[{ height: containerWidth + 'px' }]"
+            alt="image0"
+            class="card-image left-image"
+          />
+          <img
+            :src="images[1]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image1"
+            class="card-image right-top-image"
+          />
+          <img
+            :src="images[2]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image2"
+            class="card-image right-bottom-image"
+          />
         </div>
-        <div v-if="images.length === 4" class="image-container" >
-          <img :src="images[0]" class="card-image left-top-image" alt="image0"  :style="[{  height: 0.49*containerWidth + 'px' }]">
-          <img :src="images[1]" class="card-image left-bottom-image" alt="image1" :style="[{  height: 0.49*containerWidth + 'px' }]">
-          <img :src="images[2]" class="card-image right-top-image" alt="image2" :style="[{  height: 0.49*containerWidth + 'px' }]">
-          <img :src="images[3]" class="card-image right-bottom-image" alt="image3" :style="[{  height: 0.49*containerWidth + 'px' }]">
+        <div v-if="images.length === 4" class="image-container">
+          <img
+            :src="images[0]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image0"
+            class="card-image left-top-image"
+          />
+          <img
+            :src="images[1]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image1"
+            class="card-image left-bottom-image"
+          />
+          <img
+            :src="images[2]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image2"
+            class="card-image right-top-image"
+          />
+          <img
+            :src="images[3]"
+            :style="[{ height: 0.49 * containerWidth + 'px' }]"
+            alt="image3"
+            class="card-image right-bottom-image"
+          />
         </div>
       </div>
 
       <div class="text-wrapper">
         <span class="text">{{ text }}</span>
       </div>
-
     </BaseInteractive>
   </div>
 </template>
 
 <style scoped>
 * {
-
 }
 
 .card {
@@ -109,6 +161,7 @@ const updateWidth = () => {
 
 .left-top-image {
   width: 49%;
+  border-top-left-radius: 10px;
   position: absolute;
   left: 0;
   top: 0;

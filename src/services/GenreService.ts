@@ -2,34 +2,27 @@ import axios from 'axios'
 import type { CursorPair } from '@/services/Pagination'
 import { ApiClient } from '@/services/ApiClient'
 
-export interface GetArtistsResponse {
-  artists: GetArtistsArtist[]
+export interface GetGenresResponse {
+  genres: GetGenresGenre[]
   pagination: CursorPair
 }
 
-export interface GetArtistsArtist {
+export interface GetGenresGenre {
   id: string
   name: string
   song_count: number
-  covers: GetArtistsArtistCover[]
+  covers: GetGenresGenreCover[]
 }
 
-export interface GetArtistsArtistCover {
+export interface GetGenresGenreCover {
   id: string
 }
 
-export const ArtistService = {
-  async getArtists(
-    limit: number,
-    sort: string | null,
-    nextCursor: string | null
-  ): Promise<GetArtistsResponse> {
+export const GenreService = {
+  async getGenres(limit: number, sort: string | null): Promise<GetGenresResponse> {
     try {
       const response = await ApiClient.get(
-        '/artists?limit=' +
-          limit +
-          (sort ? '&sort=' + sort : '') +
-          (nextCursor ? '&cursor=' + nextCursor : ''),
+        '/genres?limit=' + limit + (sort ? '&sort=' + sort : ''),
         {
           headers: {
             'X-API-Version': `1`,
