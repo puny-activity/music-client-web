@@ -5,10 +5,10 @@
         v-for="artist in artistsList"
         :key="artist.id"
         :images="getArtistCovers(artist)"
+        :size-change-percent="4"
         :text="artist.name"
         background-color="#EBEBEB"
         class="artists-content-grid-item"
-        size-change-percent="4"
         @click="openArtistSongs(artist.id)"
       />
     </div>
@@ -17,10 +17,11 @@
         v-for="song in songsList"
         :key="song.id"
         :images="[getSongCover(song)]"
+        :size-change-percent="4"
         :text="song.title"
         background-color="#EBEBEB"
         class="artists-content-grid-item"
-        size-change-percent="4"
+        @click="playSong(song)"
       />
     </div>
   </div>
@@ -29,7 +30,7 @@
 <script lang="ts" setup>
 import { nextTick, onMounted, ref } from 'vue'
 import { useCoversStore } from '@/stores/useCoversStore'
-import { ArtistService } from '@/services/ArtistService'
+import { ArtistService, type GetArtistsArtist } from '@/services/ArtistService'
 import { type GetSongsSong, SongService } from '@/services/SongService'
 import CustomCard from '@/components/custom/CustomCard.vue'
 import defaultCover from '@/assets/default/artistCover.png'
@@ -43,6 +44,12 @@ const isLoading = ref(false)
 const isContentLoading = ref(false)
 const isContent = ref(false)
 const coversStore = useCoversStore()
+
+const emit = defineEmits(['play-song'])
+
+const playSong = async (song: GetSongsSong) => {
+  emit('play-song', song)
+}
 
 const loadArtists = async () => {
   if (isLoading.value) return

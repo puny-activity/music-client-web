@@ -5,10 +5,10 @@
         v-for="genre in genresList"
         :key="genre.id"
         :images="getGenreCovers(genre)"
+        :size-change-percent="4"
         :text="genre.name"
         background-color="#EBEBEB"
         class="genres-content-grid-item"
-        size-change-percent="4"
         @click="openGenreSongs(genre.id)"
       />
     </div>
@@ -17,10 +17,11 @@
         v-for="song in songsList"
         :key="song.id"
         :images="[getSongCover(song)]"
+        :size-change-percent="4"
         :text="song.title"
         background-color="#EBEBEB"
         class="genres-content-grid-item"
-        size-change-percent="4"
+        @click="playSong(song)"
       />
     </div>
   </div>
@@ -43,6 +44,12 @@ const isLoading = ref(false)
 const isContentLoading = ref(false)
 const isContent = ref(false)
 const coversStore = useCoversStore()
+
+const emit = defineEmits(['play-song'])
+
+const playSong = async (song: GetSongsSong) => {
+  emit('play-song', song)
+}
 
 const loadGenres = async () => {
   if (isLoading.value) return

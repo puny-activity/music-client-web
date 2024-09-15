@@ -9,7 +9,7 @@ export const useCoversStore = defineStore('covers', {
     async fetchCoverUrlById(coverId: string) {
       try {
         if (!this._coverUrlById.has(coverId)) {
-          const coverUrl = await CoverService.getCoverUrl(coverId)
+          const coverUrl = await CoverService.getUrl(coverId)
           this._coverUrlById.set(coverId, coverUrl.url)
         }
       } catch (error) {

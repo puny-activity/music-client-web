@@ -1,17 +1,17 @@
 <template>
   <div class="player">
     <PlaybackTrack
+      :currentSong="currentSong"
       :style="{ height: playbackTrackHeight }"
       class="playback-track"
       @toggleMainControlVisibility="toggleMainControlVisibility"
-    >
-    </PlaybackTrack>
+    ></PlaybackTrack>
 
     <MainControl
       :style="{ height: mainControlHeight, opacity: mainControlOpacity }"
       class="main-control"
-    >
-    </MainControl>
+      @play-song="playSong"
+    ></MainControl>
   </div>
 </template>
 
@@ -19,11 +19,13 @@
 import { ref } from 'vue'
 import PlaybackTrack from '@/components/PlaybackTrack.vue'
 import MainControl from '@/components/MainControl.vue'
+import type { GetSongsSong } from '@/services/SongService'
 
 const isMainControlVisible = ref(true)
 const playbackTrackHeight = ref('30%')
 const mainControlHeight = ref('70%')
 const mainControlOpacity = ref('100%')
+const currentSong = ref<GetSongsSong | null>(null)
 
 const toggleMainControlVisibility = () => {
   if (isMainControlVisible.value) {
@@ -36,6 +38,10 @@ const toggleMainControlVisibility = () => {
     mainControlOpacity.value = '100%'
   }
   isMainControlVisible.value = !isMainControlVisible.value
+}
+
+function playSong(song: GetSongsSong) {
+  currentSong.value = song
 }
 </script>
 

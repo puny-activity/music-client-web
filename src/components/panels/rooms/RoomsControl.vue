@@ -1,5 +1,5 @@
 <template>
-  <div class="container">Комнаты</div>
+  <div class="container">Тут будут комнаты</div>
 </template>
 
 <script lang="ts" setup></script>

@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <CategoriesControl class="categories-control"></CategoriesControl>
-
+    <CategoriesControl class="categories-control" @play-song="playSong"></CategoriesControl>
     <RoomsControl class="rooms-control"></RoomsControl>
   </div>
 </template>
@@ -9,6 +8,13 @@
 <script lang="ts" setup>
 import CategoriesControl from '@/components/panels/categories/CategoriesControl.vue'
 import RoomsControl from '@/components/panels/rooms/RoomsControl.vue'
+import type { GetSongsSong } from '@/services/SongService'
+
+const emit = defineEmits(['play-song'])
+
+function playSong(song: GetSongsSong) {
+  emit('play-song', song)
+}
 </script>
 
 <style scoped>

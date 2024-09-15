@@ -26,16 +26,15 @@ import CustomButton from '@/components/custom/CustomButton.vue'
 import categoryAlbums from '@/assets/icons/categories/category-albums.svg'
 import categoryArtists from '@/assets/icons/categories/category-artists.svg'
 import categoryGenres from '@/assets/icons/categories/category-genres.svg'
-import categorySongs from '@/assets/icons/categories/category-songs.svg'
 
 const categories = [
   // {text: "Текущее", type: "categoryNow", icon: categoryNow},
   // {text: "Недавние", type: "categoryLast", icon: categoryLast},
   { text: 'Альбомы', type: 'categoryAlbums', icon: categoryAlbums },
   { text: 'Исполнители', type: 'categoryArtists', icon: categoryArtists },
-  { text: 'Жанры', type: 'categoryGenres', icon: categoryGenres },
+  { text: 'Жанры', type: 'categoryGenres', icon: categoryGenres }
   // {text: "Плейлисты", type: "categoryPlaylists", icon: categoryPlaylists},
-  { text: 'Треки', type: 'categorySongs', icon: categorySongs }
+  // { text: 'Треки', type: 'categorySongs', icon: categorySongs }
   // {text: "Файлы", type: "categoryDirectories", icon: categoryDirectories},
 ]
 

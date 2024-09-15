@@ -5,10 +5,10 @@
         v-for="album in albumsList"
         :key="album.id"
         :images="getAlbumCovers(album)"
+        :size-change-percent="4"
         :text="album.title"
         background-color="#EBEBEB"
         class="albums-content-grid-item"
-        size-change-percent="4"
         @click="openAlbumSongs(album.id)"
       />
     </div>
@@ -17,10 +17,11 @@
         v-for="song in songsList"
         :key="song.id"
         :images="[getSongCover(song)]"
+        :size-change-percent="4"
         :text="song.title"
         background-color="#EBEBEB"
         class="albums-content-grid-item"
-        size-change-percent="4"
+        @click="playSong(song)"
       />
     </div>
   </div>
@@ -43,6 +44,12 @@ const isLoading = ref(false)
 const isContentLoading = ref(false)
 const isContent = ref(false)
 const coversStore = useCoversStore()
+
+const emit = defineEmits(['play-song'])
+
+const playSong = async (song: GetSongsSong) => {
+  emit('play-song', song)
+}
 
 const loadAlbums = async () => {
   if (isLoading.value) return

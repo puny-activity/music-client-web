@@ -14,5 +14,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    host: '0.0.0.0', // Позволяет слушать на всех интерфейсах
+    port: 5173,     // Порт, на котором будет слушать сервер
   }
 })

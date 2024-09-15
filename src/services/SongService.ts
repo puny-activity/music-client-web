@@ -38,6 +38,10 @@ export interface GetSongsSongArtist {
   name: string
 }
 
+export interface GetSongUrlResponse {
+  url: string
+}
+
 export const SongService = {
   async getSongs(
     limit: number,
@@ -89,6 +93,24 @@ export const SongService = {
         console.log('Ошибка при запросе песен' + error)
       } else {
         console.error('Непредвиденная ошибка' + error)
+      }
+      throw error
+    }
+  },
+  async getUrl(songId: string): Promise<GetSongUrlResponse> {
+    try {
+      const response = await ApiClient.get('/songs/' + songId + '/url', {
+        headers: {
+          'X-API-Version': `1`,
+          credentials: 'same-origin'
+        }
+      })
+      return response.data
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('Ошибка при запросе адреса песни')
+      } else {
+        console.error('Непредвиденная ошибка')
       }
       throw error
     }

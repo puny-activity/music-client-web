@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const ApiClient = axios.create({
-  baseURL: 'http://localhost:4200'
+  baseURL: 'https://music-api.zalimannard.ru'
 })

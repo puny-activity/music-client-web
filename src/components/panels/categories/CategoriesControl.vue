@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <CategoryList class="category-list" @change-category="changeCategory" />
-    <component :is="currentContent" :key="componentKey" />
+    <component :is="currentContent" :key="componentKey" @play-song="playSong" />
   </div>
 </template>
 
@@ -12,6 +12,13 @@ import GenresContent from '@/components/panels/categories/content/GenresContent.
 import AlbumsContent from '@/components/panels/categories/content/AlbumsContent.vue'
 import ArtistsContent from '@/components/panels/categories/content/ArtistsContent.vue'
 import SongsContent from '@/components/panels/categories/content/SongsContent.vue'
+import type { GetSongsSong } from '@/services/SongService'
+
+const emit = defineEmits(['play-song'])
+
+function playSong(song: GetSongsSong) {
+  emit('play-song', song)
+}
 
 type ContentComponents = {
   [key: string]: ReturnType<typeof defineComponent>

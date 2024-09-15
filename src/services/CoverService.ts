@@ -6,7 +6,7 @@ export interface GetCoverUrlResponse {
 }
 
 export const CoverService = {
-  async getCoverUrl(coverId: string): Promise<GetArtistsResponse> {
+  async getUrl(coverId: string): Promise<GetCoverUrlResponse> {
     try {
       const response = await ApiClient.get('/covers/' + coverId + '/url', {
         headers: {
